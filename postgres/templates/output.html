@@ -1,0 +1,6 @@
+<!-- {{posts}} -->
+
+<h2>List of posts</h2>
+{% for i in posts %}
+    <div>{{ i.title }} - {{ i.body }} - {{ i.author.first_name }}</div>
+{% endfor %}

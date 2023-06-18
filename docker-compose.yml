@@ -3,7 +3,6 @@ version: "3.7"
 services:
   web:
     image: backend:local
-    # command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:80"
     build:
       context: ./
       dockerfile: Dockerfile
@@ -20,16 +19,12 @@ services:
       - intranet
     restart: always
   db:
-    image: postgres:local
-    build:
-      context: ./
-      dockerfile: Dockerfile.postgres
+    image: postgres:latest
     healthcheck:
         test: ["CMD-SHELL", "pg_isready -U postgres"]
         timeout: 10s
         interval: 10s
         retries: 10
-        # start_period: 60s
     environment:
       POSTGRES_DB: test_db
       POSTGRES_PASSWORD: test_pass
